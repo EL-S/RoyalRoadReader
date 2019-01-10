@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     
         // Save it using the Chrome extension storage API.
-        chrome.storage.sync.set({'status': status, 'status_str': status_str}, function() {
+        chrome.storage.local.set({'status': status, 'status_str': status_str}, function() {
             console.log('Settings saved');
         });
         console.log('Settings test');
