@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Settings saved');
         });
         document.getElementById("formatpage").innerHTML = status_str;
-        alert(autostatus);
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
             chrome.tabs.sendMessage(tabs[0].id, {data: autostatus}, function(response) {
                 console.log('Success');
