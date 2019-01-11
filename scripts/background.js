@@ -1,7 +1,10 @@
 window.onload = function() {
-    chrome.storage.local.get('status', function(result) {
+    chrome.storage.local.get(['status','autostatus'], function(result) {
+        
         var status = result.status;
-        if (status == "enabled") {
+        var autostatus = result.autostatus;
+
+        function format () {
             var image = "<div align='center'>"+document.getElementsByClassName("col-md-2 col-md-push-1 hidden-sm hidden-xs")[0].innerHTML+"</div>";
             var titles = "<div align='center' style=' margin-top: 20px; margin-bottom: 20px;'>"+document.getElementsByClassName("col-md-5 col-lg-6 col-md-offset-1 text-center md-text-left")[0].innerHTML+"</div>";
             var top_buttons = "<div align='center' style=' margin-top: 20px; margin-bottom: 20px;'>"+document.getElementsByClassName("col-md-4 col-lg-3 fic-buttons text-center md-text-left")[0].innerHTML+"</div>";
@@ -20,6 +23,17 @@ window.onload = function() {
             var html = "<div class='portlet light chapter' style='width: 50%; margin: 25%; margin-top: 20px; margin-bottom: 20px;'>"+style_sheets+info+chapter+buttons+"</div>";
 
             document.write(html);
+        }
+
+        if (autostatus == "enabled") {
+            format();
+        } else {
+            var status_str = "Enable";
+            var status = "disabled";
+            // Save it using the Chrome extension storage API.
+            chrome.storage.local.set({'autostatus': autostatus, 'status': status, 'status_str': status_str}, function() {
+                console.log('Settings saved');
+            });
         }
     });
 }
