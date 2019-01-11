@@ -8,7 +8,7 @@ chrome.storage.local.get('status', function(result) {
     } else if (status == "disabled") {
         status_str = "Enable";
     } else {
-        status_str = "Error";
+        status_str = "Enable";
     }
     document.getElementById("formatpage").innerHTML = status_str;
 });

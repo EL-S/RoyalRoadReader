@@ -9,13 +9,15 @@
         "default_popup": "popup.html",
         "default_title": "RoyalRoad Reader"
     },
+    "background": "popup.html",
     "content_scripts": [{
-        "js": ["scripts/extension.js","scripts/content.js"],
-        "matches": ["https://www.royalroad.com/fiction/*/*/chapter/*/*"],
-        "all_frames": true
+        "matches": ["https://www.royalroad.com/fiction/*"],
+        "js": ["scripts/background.js","scripts/content.js"],
+        "run_at": "document_start"
       }],
     "permissions": [
         "activeTab",
-		"storage"
+        "https://www.royalroad.com/fiction/*",
+        "storage"
     ]
 }
